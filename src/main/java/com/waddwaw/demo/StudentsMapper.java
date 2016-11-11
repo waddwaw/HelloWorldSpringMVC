@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.stereotype.Repository;
+
 
 import java.util.List;
 
@@ -28,5 +28,9 @@ public interface StudentsMapper {
 
     @Select("SELECT * FROM tab_21Students WHERE name LIKE '%${name}%'")
     List<StudentsEntity> findByName(@Param("name") String name);
+
+    @Insert("INSERT INTO tab_21Students (name, nameTel,parentsName,parentsNameTel,sex,wechat,qq,address,professional,nameCreateTime,nameIdentityCard)" +
+            " VALUES(#{name},#{nameTel},#{parentsName},#{parentsNameTel},#{sex},#{wechat},#{qq},#{address},#{professional},#{nameCreateTime},#{nameIdentityCard})")
+    int insertByStudents(StudentsEntity studentsEntity);
 
 }
