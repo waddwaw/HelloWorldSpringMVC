@@ -2,12 +2,9 @@ package com.waddwaw.demo.shiro.service.impl;
 
 import com.waddwaw.demo.shiro.dao.UserMapper;
 import com.waddwaw.demo.shiro.model.User;
-import com.waddwaw.demo.shiro.model.UserExample;
 import com.waddwaw.demo.shiro.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
-import java.util.List;
 
 
 /**
@@ -19,23 +16,14 @@ import java.util.List;
 @Service
 public class UserServiceImpl  implements UserService {
 
-    @Resource
-    private UserMapper userMapper;
+    @Autowired
+    UserMapper userMapper;
 
-    public User authentication(User user) {
-        return userMapper.authentication(user);
+    public User authentication(String user, String pwd) {
+        return userMapper.authentication(user,pwd);
     }
 
-    public User selectById(Long id) {
-        return userMapper.selectByPrimaryKey(id);
+    public User selectByUsername(String user) {
+        return userMapper.byUserName(user);
     }
-
-  
-    public User selectByUsername(String username) {
-        UserExample example = new UserExample();
-        example.createCriteria().andUsernameEqualTo(username);
-        final List<User> list = userMapper.selectByExample(example);
-        return list.get(0);
-    }
-
 }

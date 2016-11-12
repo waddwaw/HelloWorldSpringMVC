@@ -9,9 +9,9 @@ package com.waddwaw.demo.shiro.model;
 public class Role {
     private Long id;
 
-    private String roleName;
+    private String role_name;
 
-    private String roleSign;
+    private String role_sign;
 
     private String description;
 
@@ -23,20 +23,20 @@ public class Role {
         this.id = id;
     }
 
-    public String getRoleName() {
-        return roleName;
+    public String getRole_name() {
+        return role_name;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName == null ? null : roleName.trim();
+    public void setRole_name(String role_name) {
+        this.role_name = role_name;
     }
 
-    public String getRoleSign() {
-        return roleSign;
+    public String getRole_sign() {
+        return role_sign;
     }
 
-    public void setRoleSign(String roleSign) {
-        this.roleSign = roleSign == null ? null : roleSign.trim();
+    public void setRole_sign(String role_sign) {
+        this.role_sign = role_sign;
     }
 
     public String getDescription() {
@@ -44,12 +44,16 @@ public class Role {
     }
 
     public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
+        this.description = description;
     }
 
     @Override
     public String toString() {
-        return "Role [id=" + id + ", roleName=" + roleName + ", roleSign=" + roleSign + ", description=" + description + "]";
+        return "Role{" +
+                "id=" + id +
+                ", role_name='" + role_name + '\'' +
+                ", role_sign='" + role_sign + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
-
 }

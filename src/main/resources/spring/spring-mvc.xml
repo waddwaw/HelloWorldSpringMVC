@@ -72,17 +72,22 @@
                 <entry key="xml_escape" value-ref="fmXmlEscape" />
             </map>
         </property>
+        <property name="freemarkerSettings">
+            <props>
+                <prop key="locale">zh_CN</prop>
+                <prop key="defaultEncoding">UTF-8</prop>
+                <prop key="date_format">yyyy-MM-dd</prop>
+                <prop key="time_format">HH:mm:ss</prop>
+                <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+                <prop key="number_format">0.################</prop>
+            </props>
+        </property>
     </bean>
     <bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape" />
     <!-- 配置freeMarker視圖解析器 -->
     <bean id="freemakerViewResolver"        class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
         <property name="viewClass"        value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
         <!-- 掃描路徑內所有以ftl結尾的文件 -->
-        <property name="viewNames">
-            <array>
-                <value>*.ftl</value>
-            </array>
-        </property>
         <property name="contentType" value="text/html; charset=UTF-8" />
         <property name="exposeRequestAttributes" value="true" />
         <property name="exposeSessionAttributes" value="true" />
@@ -91,7 +96,21 @@
         <!-- 給視圖解析器配置優先級，你可以給之前jsp視圖解析器的值配為2 -->
         <property name="order" value="1" />
     </bean>
+
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.apache.shiro.authz.UnauthorizedException">redirect:/err401</prop>
+                <prop key="org.apache.shiro.authz.UnauthenticatedException">redirect:/login</prop>
+            </props>
+        </property>
+    </bean>
     <!-- 启用shrio授权注解拦截方式 -->
     <aop:config proxy-target-class ="true"/>
+
+    <!--预留拦截器-->
+    <!--<bean id="authInterceptor" class=".AuthInterceptor"/>-->
+    <!--<bean id="weChatInterceptor" class="cptor.WeChatInterceptor"/>-->
+    <!--<bean id="managementInterceptor" class="cninterceptor.ManagementInterceptor"/>-->
 
 </beans>

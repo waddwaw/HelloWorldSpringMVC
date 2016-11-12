@@ -1,11 +1,16 @@
 package com.waddwaw.demo.shiro.security;
 
+import com.waddwaw.demo.StudentsEntity;
+import com.waddwaw.demo.StudentsMapper;
 import com.waddwaw.demo.shiro.model.Permission;
 import com.waddwaw.demo.shiro.model.Role;
 import com.waddwaw.demo.shiro.model.User;
 import com.waddwaw.demo.shiro.service.PermissionService;
 import com.waddwaw.demo.shiro.service.RoleService;
 import com.waddwaw.demo.shiro.service.UserService;
+import com.waddwaw.demo.shiro.service.impl.PermissionServiceImpl;
+import com.waddwaw.demo.shiro.service.impl.RoleServiceImpl;
+import com.waddwaw.demo.shiro.service.impl.UserServiceImpl;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -14,6 +19,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -29,14 +35,17 @@ import java.util.List;
 @Component(value = "securityRealm")
 public class SecurityRealm extends AuthorizingRealm {
 
-    @Resource
-    private UserService userService;
+    @Autowired
+    private UserServiceImpl userService;
 
-    @Resource
-    private RoleService roleService;
+    @Autowired
+    private RoleServiceImpl roleService;
 
-    @Resource
-    private PermissionService permissionService;
+    @Autowired
+    private PermissionServiceImpl permissionService;
+
+    @Autowired
+    StudentsMapper studentsMapper;
 
     /**
      * 权限检查
@@ -51,13 +60,13 @@ public class SecurityRealm extends AuthorizingRealm {
         for (Role role : roleInfos) {
             // 添加角色
             System.err.println(role);
-            authorizationInfo.addRole(role.getRoleSign());
+            authorizationInfo.addRole(role.getRole_sign());
 
             final List<Permission> permissions = permissionService.selectPermissionsByRoleId(role.getId());
             for (Permission permission : permissions) {
                 // 添加权限
                 System.err.println(permission);
-                authorizationInfo.addStringPermission(permission.getPermissionSign());
+                authorizationInfo.addStringPermission(permission.getPermission_sign());
             }
         }
         return authorizationInfo;
@@ -70,8 +79,10 @@ public class SecurityRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String username = String.valueOf(token.getPrincipal());
         String password = new String((char[]) token.getCredentials());
+
         // 通过数据库进行验证
-        final User authentication = userService.authentication(new User(username, password));
+        final User authentication = userService.authentication(username, password);
+
         if (authentication == null) {
             throw new AuthenticationException("用户名或密码错误.");
         }

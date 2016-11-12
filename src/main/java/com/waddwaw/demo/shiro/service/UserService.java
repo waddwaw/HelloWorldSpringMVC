@@ -15,9 +15,10 @@ public interface UserService  {
      * 用户验证
      * 
      * @param user
+     * @param pwd
      * @return
      */
-    User authentication(User user);
+    User authentication(String user, String pwd);
 
     /**
      * 根据用户名查询用户

@@ -9,9 +9,9 @@ package com.waddwaw.demo.shiro.model;
 public class Permission {
     private Long id;
 
-    private String permissionName;
+    private String permission_name;
 
-    private String permissionSign;
+    private String permission_sign;
 
     private String description;
 
@@ -23,20 +23,20 @@ public class Permission {
         this.id = id;
     }
 
-    public String getPermissionName() {
-        return permissionName;
+    public String getPermission_name() {
+        return permission_name;
     }
 
-    public void setPermissionName(String permissionName) {
-        this.permissionName = permissionName == null ? null : permissionName.trim();
+    public void setPermission_name(String permission_name) {
+        this.permission_name = permission_name;
     }
 
-    public String getPermissionSign() {
-        return permissionSign;
+    public String getPermission_sign() {
+        return permission_sign;
     }
 
-    public void setPermissionSign(String permissionSign) {
-        this.permissionSign = permissionSign == null ? null : permissionSign.trim();
+    public void setPermission_sign(String permission_sign) {
+        this.permission_sign = permission_sign;
     }
 
     public String getDescription() {
@@ -44,12 +44,16 @@ public class Permission {
     }
 
     public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
+        this.description = description;
     }
 
     @Override
     public String toString() {
-        return "Permission [id=" + id + ", permissionName=" + permissionName + ", permissionSign=" + permissionSign + ", description=" + description + "]";
+        return "Permission{" +
+                "id=" + id +
+                ", permission_name='" + permission_name + '\'' +
+                ", permission_sign='" + permission_sign + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
-
 }

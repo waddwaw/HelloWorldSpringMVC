@@ -68,7 +68,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <!-- 自动扫描mapping.xml 文件 -->
-        <property name="mapperLocations" value="classpath:com/waddwaw/demo/shiro/dao/*.xml" />
+        <!--<property name="mapperLocations" value="classpath:com/waddwaw/demo/shiro/dao/*.xml" />-->
         <!-- 开启缓存支持 -->
         <property name="configurationProperties">
             <props>
@@ -94,7 +94,7 @@
     </bean>
 
     <!-- spring与mybatis整合配置，扫描所有dao -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" p:basePackage="com.shiro.dao"
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" p:basePackage="com.waddwaw.demo"
           p:sqlSessionFactoryBeanName="sqlSessionFactory"/>
 
     <!-- 对dataSource 数据源进行事务管理 -->

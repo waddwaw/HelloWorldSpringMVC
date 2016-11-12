@@ -1,40 +1,21 @@
 package com.waddwaw.demo.shiro.dao;
 
 import com.waddwaw.demo.shiro.model.Role;
-import com.waddwaw.demo.shiro.model.RoleExample;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.mybatis.spring.annotation.MapperScan;
 
 import java.util.List;
 
 
 /**
- * 角色Dao 接口
- * 
- * @author StarZou
- * @since 2014年7月5日 上午11:55:59
+ * 角色 Dao 接口
+ *
+ * @author liliqiang
+ * @since 2016年11月12日 上午11:59:03
  **/
+@MapperScan
 public interface RoleMapper {
-    int countByExample(RoleExample example);
-
-    int deleteByExample(RoleExample example);
-
-    int deleteByPrimaryKey(Long id);
-
-    int insert(Role record);
-
-    int insertSelective(Role record);
-
-    List<Role> selectByExample(RoleExample example);
-
-    Role selectByPrimaryKey(Long id);
-
-    int updateByExampleSelective(@Param("record") Role record, @Param("example") RoleExample example);
-
-    int updateByExample(@Param("record") Role record, @Param("example") RoleExample example);
-
-    int updateByPrimaryKeySelective(Role record);
-
-    int updateByPrimaryKey(Role record);
 
     /**
      * 通过用户id 查询用户 拥有的角色
@@ -42,5 +23,7 @@ public interface RoleMapper {
      * @param userId
      * @return
      */
-    List<Role> selectRolesByUserId(Long userId);
+    @Select("SELECT role.id,role.role_name,role.role_sign,role.description FROM role, user_role " +
+            "WHERE user_role.user_id = #{userId} and role.id = user_role.user_id ")
+    List<Role> selectRolesByUserId(@Param("userId") Long userId);
 }
