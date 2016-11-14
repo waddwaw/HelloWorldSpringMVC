@@ -19,7 +19,7 @@
 				<entry key="authc">
 					<bean class="org.apache.shiro.web.filter.authc.PassThruAuthenticationFilter"/>
 				</entry>
-				<!--<entry key="authc" value-ref="ajaxUserFilter" />-->
+				<!--<entry key="user" value-ref="ajaxUserFilter" />-->
 			</map>
 		</property>
 		<!--<property name="filterChainDefinitions">-->
@@ -91,9 +91,9 @@
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="securityRealm"/>
 		<!-- cacheManager,集合spring缓存工厂 -->
-		<!-- <property name="cacheManager" ref="shiroEhcacheManager" /> -->
+		 <property name="cacheManager" ref="shiroEhcacheManager" />
 		 <property name="sessionManager" ref="sessionManager"/>
-       <!--  <property name="rememberMeManager" ref="rememberMeManager"/> -->
+         <!--<property name="rememberMeManager" ref="rememberMeManager"/> -->
 	</bean>
 
 	<!-- Shiro生命周期处理器 -->
