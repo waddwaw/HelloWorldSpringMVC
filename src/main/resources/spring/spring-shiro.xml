@@ -15,11 +15,12 @@
 		<property name="unauthorizedUrl" value="/err401" />
 
 		<property name="filters">
-			<util:map>
+			<map>
 				<entry key="authc">
 					<bean class="org.apache.shiro.web.filter.authc.PassThruAuthenticationFilter"/>
 				</entry>
-			</util:map>
+				<entry key="authc" value-ref="ajaxUserFilter" />
+			</map>
 		</property>
 		<!--<property name="filterChainDefinitions">-->
 			<!--<value>-->
