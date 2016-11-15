@@ -67,18 +67,18 @@
 		<property name="sessionDAO" ref="sessionDAO" />
 	</bean>
 	<!-- 会话Cookie模板 -->
-	<bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
-		<constructor-arg value="sid" />
-		<property name="httpOnly" value="true" />
-		<!-- maxAge=-1表示浏览器关闭时失效此Cookie； -->
-		<property name="maxAge" value="-1" />
-	</bean>
-	<!-- <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
-		<constructor-arg value="rememberMe" />
-		<property name="httpOnly" value="true" />
-		即记住我的Cookie，保存时长30天；
-		<property name="maxAge" value="2592000" />30天
-	</bean> -->
+	<!--<bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">-->
+		<!--<constructor-arg value="sid" />-->
+		<!--<property name="httpOnly" value="true" />-->
+		<!--&lt;!&ndash; maxAge=-1表示浏览器关闭时失效此Cookie； &ndash;&gt;-->
+		<!--<property name="maxAge" value="10" />-->
+	<!--</bean>-->
+	 <!--<bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">-->
+		<!--<constructor-arg value="rememberMe" />-->
+		<!--<property name="httpOnly" value="true" />-->
+		<!--&lt;!&ndash;即记住我的Cookie，保存时长30天；&ndash;&gt;-->
+		<!--<property name="maxAge" value="10" />-->
+	<!--</bean>-->
 
  <!-- rememberMe管理器 -->
    <!--  <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">

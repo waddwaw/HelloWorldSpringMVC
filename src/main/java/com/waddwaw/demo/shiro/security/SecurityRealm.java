@@ -53,9 +53,8 @@ public class SecurityRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        String username = String.valueOf(principals.getPrimaryPrincipal());
+        User user = (User) principals.getPrimaryPrincipal();
 
-        final User user = userService.selectByUsername(username);
         final List<Role> roleInfos = roleService.selectRolesByUserId(user.getId());
         for (Role role : roleInfos) {
             // 添加角色
@@ -86,7 +85,7 @@ public class SecurityRealm extends AuthorizingRealm {
         if (authentication == null) {
             throw new AuthenticationException("用户名或密码错误.");
         }
-        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(username, password, getName());
+        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(authentication, password, getName());
         return authenticationInfo;
     }
 

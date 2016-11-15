@@ -46,7 +46,8 @@ public class Hello {
         PageHelper.startPage(1, peage);
         List<User> users = userMapper.byListUserName(name);
         long total  = ((Page) users).getTotal();
-        model.addAttribute("message", "hello world " + total + "--" + users.size());
+        Subject subject = SecurityUtils.getSubject();
+        model.addAttribute("message", "hello world " + total + "--" + users.size() + "==" + ((User)subject.getPrincipal()).getUsername());
 
         return "/hello.ftl";
     }
@@ -58,6 +59,7 @@ public class Hello {
         token.setRememberMe(true);
         try {
             subject.login(token);
+            SecurityUtils.getSubject().getSession().setTimeout(1000 * 10);
             return "redirect:/hello2";
         }catch (AuthenticationException e) {
             token.clear();
