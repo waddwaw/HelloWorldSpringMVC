@@ -31,6 +31,8 @@
         <slf4j.version>1.6.6</slf4j.version>
         <log4j.version>1.2.12</log4j.version>
         <shiro.version>1.2.3</shiro.version>
+        <mybaits.pagehelper.version>4.1.6</mybaits.pagehelper.version>
+        <mybaits.tk.mapper.version>3.3.9</mybaits.tk.mapper.version>
     </properties>
     <!--工程依赖版本信息 结束-->
     <dependencies>
@@ -126,6 +128,18 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>4.0.0-b01</version>
+        </dependency>
+        <!--mybatis pagehelper 开始-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>${mybaits.pagehelper.version}</version>
+        </dependency>
+        <!--mybatis mapper  开始  目前没有使用-->
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+            <version>${mybaits.tk.mapper.version}</version>
         </dependency>
         <!--druid 链接池 开始-->
         <dependency>

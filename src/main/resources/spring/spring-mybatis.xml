@@ -91,6 +91,17 @@
                 <prop key="defaultStatementTimeout">25000</prop>
             </props>
         </property>
+        <!--集成 mybitas 分页插件-->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageHelper">
+                    <property name="properties">
+                        <value>
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
     </bean>
 
     <!-- spring与mybatis整合配置，扫描所有dao -->
@@ -134,4 +145,6 @@
           p:configLocation="classpath:/config/ehcache.xml"/>
     <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"
           p:cacheManager-ref="ehCacheManagerFactory"/>
+
+
 </beans>

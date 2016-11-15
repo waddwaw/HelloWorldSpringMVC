@@ -14,7 +14,7 @@ import java.util.List;
  * @since 2016年11月12日 上午11:59:03
  **/
 @MapperScan
-public interface PermissionMapper  {
+public interface PermissionMapper {
 
     /**
      * 通过角色id 查询角色 拥有的权限

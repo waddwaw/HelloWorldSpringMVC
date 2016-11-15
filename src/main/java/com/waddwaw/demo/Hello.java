@@ -1,6 +1,9 @@
 package com.waddwaw.demo;
 
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.waddwaw.demo.shiro.dao.UserMapper;
 import com.waddwaw.demo.shiro.model.User;
 import com.waddwaw.demo.shiro.security.PermissionSign;
@@ -17,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 /**
  * Created by arvin on 2016/11/10.
  */
@@ -29,14 +34,19 @@ public class Hello {
     @Autowired
     UserMapper userMapper;
 
-    @RequestMapping("/hello")
-    public String printWelcome(String name,ModelMap model) {
+    @RequestMapping("/hello")  //127.0.0.1:8080/hello?peage=1
+    public String printWelcome(String name,Integer peage,ModelMap model) {
 
         if(StringUtils.isEmpty(name)) {
             name = "admin";
         }
-        User user = userMapper.byUserName(name);
-        model.addAttribute("message","hello world" + user.getUsername());
+        if(StringUtils.isEmpty(peage)) {
+            peage = 1;
+        }
+        PageHelper.startPage(1, peage);
+        List<User> users = userMapper.byListUserName(name);
+        long total  = ((Page) users).getTotal();
+        model.addAttribute("message", "hello world " + total + "--" + users.size());
 
         return "/hello.ftl";
     }

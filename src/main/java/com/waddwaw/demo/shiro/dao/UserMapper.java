@@ -1,5 +1,6 @@
 package com.waddwaw.demo.shiro.dao;
 
+import com.github.pagehelper.PageInfo;
 import com.waddwaw.demo.shiro.model.User;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -30,5 +31,8 @@ public interface UserMapper {
 
     @Select("SELECT * FROM user WHERE username = #{user}")
     User byUserName(@Param("user") String user);
+
+    @Select("SELECT * FROM user WHERE username = #{user}")
+    List<User> byListUserName(@Param("user") String user);
 
 }
