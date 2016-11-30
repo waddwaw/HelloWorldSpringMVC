@@ -22,13 +22,13 @@
 				<!--<entry key="user" value-ref="ajaxUserFilter" />-->
 			</map>
 		</property>
-		<property name="filterChainDefinitions">
-			<value>
+		<!--<property name="filterChainDefinitions">-->
+			<!--<value>-->
 				<!--&lt;!&ndash; 静态资源允许访问 &ndash;&gt;-->
 				<!--&lt;!&ndash;/app/** = anon&ndash;&gt;-->
 				<!--/loginPost = anon-->
 				<!--/err401 = anon-->
-				/hello2** = authc
+				<!--/hello2** = authc-->
 				<!--&lt;!&ndash; 登录页允许访问 &ndash;&gt;-->
 				<!--&lt;!&ndash;/rest/user/login = anon&ndash;&gt;-->
 				<!--&lt;!&ndash; 如果某个资源允许访问， 直接匹配成anon 即可 &ndash;&gt;-->
@@ -40,8 +40,8 @@
 				<!--&lt;!&ndash; /rest/user/admin = authc ,perms[user:create] &ndash;&gt;-->
 				<!--&lt;!&ndash; 其他资源需要认证 ，需要认证的资源 匹配成 authc &ndash;&gt;-->
 				<!--&lt;!&ndash; /** = authc &ndash;&gt;-->
-			</value>
-		</property>
+			<!--</value>-->
+		<!--</property>-->
 	</bean>
 
 	<!-- 缓存管理器 使用Ehcache实现 -->
