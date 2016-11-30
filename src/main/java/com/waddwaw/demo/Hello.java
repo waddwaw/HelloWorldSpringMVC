@@ -44,10 +44,10 @@ public class Hello {
             peage = 1;
         }
         PageHelper.startPage(1, peage);
-        List<User> users = userMapper.byListUserName(name);
-        long total  = ((Page) users).getTotal();
-        Subject subject = SecurityUtils.getSubject();
-        model.addAttribute("message", "hello world " + total + "--" + users.size() + "==" + ((User)subject.getPrincipal()).getUsername());
+//        List<User> users = userMapper.byListUserName(name);
+//        long total  = ((Page) users).getTotal();
+//        Subject subject = SecurityUtils.getSubject();
+//        model.addAttribute("message", "hello world " + total + "--" + users.size() + "==" + ((User)subject.getPrincipal()).getUsername());
 
         return "/hello.ftl";
     }
